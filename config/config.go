@@ -3,6 +3,7 @@ package config
 import (
 	"log"
 	"os"
+	"time"
 
 	"github.com/joho/godotenv"
 )
@@ -13,7 +14,14 @@ type Config struct {
     NotionRootPageID string
     ServerPort       string
     DefaultPageSize  int
+
+    // Rate Limiter Configuration
+	RateLimiterRate     float64      // Requests per second
+	RateLimiterBurst    int          // Maximum burst size
+	RateLimiterExpiry   time.Duration // How long to keep rate limiter state
 }
+
+
 
 // Load returns a new Config struct populated from environment variables
 func Load() *Config {
@@ -28,6 +36,12 @@ func Load() *Config {
         NotionRootPageID: getEnv("NOTION_ROOT_PAGE_ID", ""),
         ServerPort:       getEnv("SERVER_PORT", "1323"),
         DefaultPageSize:  20,
+
+ 	    // Rate Limiter configuration aligned with Notion API limits
+		// Notion allows 3 req/sec average with some bursts allowed
+		RateLimiterRate:     3.0,  // 3 requests per second to match Notion's limit
+		RateLimiterBurst:    9,    // Allow small bursts (3 seconds worth of requests)
+		RateLimiterExpiry:   1 * time.Minute, // Reset rate limiter state after 1 minute
     }
 }
 

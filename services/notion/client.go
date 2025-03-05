@@ -186,9 +186,9 @@ func (s *Service) getAllDatabaseEntries(ctx context.Context, databaseIDs []notio
 				entry.CreatedTime = page.CreatedTime
 				
 				// Only add valid entries
-				if entry.Title != "" && entry.URL != "" {
+				// if entry.Title != "" && entry.URL != "" {
 					entries = append(entries, entry)
-				}
+				// }
 			}
 			
 			// Safely add to the global list
