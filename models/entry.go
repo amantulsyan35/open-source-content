@@ -24,3 +24,10 @@ type PaginationParams struct {
 	PageSize int
 	Offset   int
 }
+
+type Introduction struct {
+	Title       string `json:"title"`
+	Description string `json:"description"`
+	Thesis      string `json:"thesis"`
+	GithubLink  string `json:"github_link"`
+}

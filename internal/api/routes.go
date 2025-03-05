@@ -15,7 +15,9 @@ func SetupRoutes(e *echo.Echo, cfg *config.Config) {
 	
 	// Initialize handlers
 	notionHandler := handlers.NewNotionHandler(notionService, cfg)
-	
+
+ 	e.GET("/", notionHandler.GetIntroduction)
+
 	// API v1 group
 	v1 := e.Group("/v1")
 	
