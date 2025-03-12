@@ -1,8 +1,6 @@
 package api
 
 import (
-	"net/http"
-
 	"github.com/labstack/echo/v4"
 
 	"open-source-content-api/config"
@@ -18,15 +16,8 @@ func SetupRoutes(e *echo.Echo, cfg *config.Config) {
 	// Initialize handlers
 	notionHandler := handlers.NewNotionHandler(notionService, cfg)
 
-	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, World!")
-	})
-
-	e.GET("/test", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Test route works!")
-	})
-		
-
+ 	e.GET("/", notionHandler.GetDatabase)
+	
 	// API v1 group
 	v1 := e.Group("/v1")
 	
