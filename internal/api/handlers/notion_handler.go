@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"log"
 	"net/http"
 	"strconv"
 	"time"
@@ -54,12 +55,15 @@ func (h *NotionHandler) GetDatabase(c echo.Context) error {
 
 
 func (h *NotionHandler) GetIntroduction(c echo.Context) error {
+	log.Println("GetIntroduction handler called")
 	introduction := models.Introduction{
 		Title: "Open Source Content API",
 		Description: "For the past three years, I've been tracking the content I consume. It began as a simple behavioral experiment aimed at predicting how my consumption shapes my thinking and problem-solving approaches.\nOver time, it evolved into a curious pursuit and a core thesis on how I operate, Personal Databases.\nThis open API consolidates all the content I consume, making it embeddable and paving the way for innovative applications powered by this dataset—especially in an era dominated by LLMs.",
 		Thesis: "https://www.amantulsyan.com/personal-databases",
 		GithubLink: "https://github.com/amantulsyan35/open-source-content/tree/main",
 	}
+
+	log.Printf("Returning response with status %d", http.StatusOK)
 	
 	return c.JSON(http.StatusOK, introduction)
 }
