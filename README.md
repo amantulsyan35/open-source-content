@@ -98,6 +98,8 @@ The following environment variables can be configured:
 | NOTION_ROOT_PAGE_ID | ID of the root Notion page containing your databases | None (Required) |
 | SERVER_PORT | Port for the API server | 1323 |
 
+This is configured according to my [personal template](https://www.notion.so/Open-Source-Content-Consumption-40c05e3737134afbb309a5fe1a87e24c)
+
 ## Rate Limiting
 
 The API implements rate limiting to prevent abuse:
