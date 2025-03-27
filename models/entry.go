@@ -31,3 +31,10 @@ type Introduction struct {
 	Thesis      string `json:"thesis"`
 	GithubLink  string `json:"github_link"`
 }
+
+type YoutubeResponse struct {
+	Data []string `json:"data"`
+}
+type WebResponse struct {
+	Data []string `json:"data"`
+}

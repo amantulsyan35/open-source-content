@@ -47,16 +47,6 @@ func (s *Service) FetchAllEntries(ctx context.Context) ([]models.EntryResult, er
 	return entries, nil
 }
 
-// SortEntriesByCreationTime sorts entries by creation time (newest first)
-func (s *Service) SortEntriesByCreationTime(entries []models.EntryResult) {
-	for i := 0; i < len(entries); i++ {
-		for j := i + 1; j < len(entries); j++ {
-			if entries[i].CreatedAt.Before(entries[j].CreatedAt) {
-				entries[i], entries[j] = entries[j], entries[i]
-			}
-		}
-	}
-}
 
 // getAllChildPages retrieves all child pages from the root page
 func (s *Service) getAllChildPages(ctx context.Context) ([]string, error) {

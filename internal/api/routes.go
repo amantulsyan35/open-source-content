@@ -23,4 +23,6 @@ func SetupRoutes(e *echo.Echo, cfg *config.Config) {
 	
 	// Routes
 	v1.GET("", notionHandler.GetDatabase)
+	v1.GET("/youtube", notionHandler.GetYoutubeVideos)
+	v1.GET("/web", notionHandler.GetWebLinks)
 }
