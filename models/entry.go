@@ -8,7 +8,7 @@ import (
 type EntryResult struct {
 	Title       string    `json:"title"`
 	URL         string    `json:"url"`
-	CreatedTime time.Time `json:"createdTime"`
+	CreatedAt time.Time `json:"createdAt"`
 }
 
 // PaginatedResponse wraps the results with pagination metadata

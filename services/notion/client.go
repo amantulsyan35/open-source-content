@@ -51,7 +51,7 @@ func (s *Service) FetchAllEntries(ctx context.Context) ([]models.EntryResult, er
 func (s *Service) SortEntriesByCreationTime(entries []models.EntryResult) {
 	for i := 0; i < len(entries); i++ {
 		for j := i + 1; j < len(entries); j++ {
-			if entries[i].CreatedTime.Before(entries[j].CreatedTime) {
+			if entries[i].CreatedAt.Before(entries[j].CreatedAt) {
 				entries[i], entries[j] = entries[j], entries[i]
 			}
 		}
@@ -183,7 +183,7 @@ func (s *Service) getAllDatabaseEntries(ctx context.Context, databaseIDs []notio
 					}
 				}
 				
-				entry.CreatedTime = page.CreatedTime
+				entry.CreatedAt = page.CreatedTime
 				
 				// Only add valid entries
 				// if entry.Title != "" && entry.URL != "" {
