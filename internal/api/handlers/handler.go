@@ -73,7 +73,7 @@ func (h *NotionHandler) GetWebLinks(c echo.Context) error {
 		// Fetch all entries from the Notion database
 		entries, err := h.service.FetchAllEntries(c.Request().Context())
 		if err != nil {
-			return echo.NewHTTPError(http.StatusInternalServerError, err.Error())
+			return echo.NewHTTPError(http.StatusNotFound, err.Error())
 		}
 
 		utils.SortEntriesByCreationTime(entries)

@@ -33,8 +33,8 @@ type Introduction struct {
 }
 
 type YoutubeResponse struct {
-	Data []string `json:"data"`
+	Data []EntryResult `json:"data"`
 }
 type WebResponse struct {
-	Data []string `json:"data"`
+	Data []EntryResult `json:"data"`
 }

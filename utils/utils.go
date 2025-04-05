@@ -19,12 +19,13 @@ func SortEntriesByCreationTime(entries []models.EntryResult) {
 	}
 }
 
-func FilterYoutubeEntries(entries []models.EntryResult) []string {
-	var youtubeEntries []string
+func FilterYoutubeEntries(entries []models.EntryResult) []models.EntryResult {
+	var youtubeEntries []models.EntryResult
 
 	for _, entry := range entries {
-		if strings.Contains(entry.URL, "www.youtube.com"){
-			youtubeEntries = append(youtubeEntries, entry.URL)
+		// Check for both www.youtube.com and youtu.be formats
+		if strings.Contains(entry.URL, "youtube.com") || strings.Contains(entry.URL, "youtu.be") {
+			youtubeEntries = append(youtubeEntries, entry)
 		}
 	}
 
@@ -32,17 +33,17 @@ func FilterYoutubeEntries(entries []models.EntryResult) []string {
 
 }
 
-func FilterWebEntries(entries []models.EntryResult) []string {
-	var webLinks []string
+func FilterWebEntries(entries []models.EntryResult) []models.EntryResult {
+	var webLinks []models.EntryResult
 
 	for _, entry := range entries {
-		if !strings.Contains(entry.URL, "www.youtube.com"){
-			webLinks = append(webLinks, entry.URL)
+		// Check for both www.youtube.com and youtu.be formats
+		if !strings.Contains(entry.URL, "youtube.com") && !strings.Contains(entry.URL, "youtu.be") {
+			webLinks = append(webLinks, entry)
 		}
 	}
 
 	return webLinks
-
 }
 
 // parsePaginationParams extracts and validates pagination parameters from the request
